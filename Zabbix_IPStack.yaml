@@ -1,6 +1,6 @@
 zabbix_export:
   version: '5.4'
-  date: '2021-10-10T23:05:31Z'
+  date: '2021-10-10T23:58:40Z'
   groups:
     -
       uuid: c1042abaca9d435ca00326c24768d8b8
@@ -25,7 +25,7 @@ zabbix_export:
           name: ipstack.geoip.api.data
           type: HTTP_AGENT
           key: ipstack.geoip.api.data
-          delay: 1d
+          delay: 6h
           history: 1d
           trends: '0'
           value_type: TEXT
@@ -42,6 +42,7 @@ zabbix_export:
           delay: '0'
           trends: '0'
           value_type: TEXT
+          inventory_link: SITE_CITY
           preprocessing:
             -
               type: JSONPATH
@@ -49,6 +50,10 @@ zabbix_export:
                 - $.city
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: City
         -
           uuid: b431aedad0ea47d58ff40d4d5dcdda53
           name: 'IP Connection ASN'
@@ -64,6 +69,13 @@ zabbix_export:
                 - $.connection.asn
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Connection
+              value: ASN
+            -
+              tag: Location
+              value: Connection
         -
           uuid: 47ce9947578f4ce5b3a73aafda068af1
           name: 'IP Connection ISP'
@@ -79,6 +91,13 @@ zabbix_export:
                 - $.connection.isp
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Connection
+              value: ISP
+            -
+              tag: Location
+              value: Connection
         -
           uuid: 92482b75c66c42b889895b87b068ca41
           name: 'IP Continent Name'
@@ -109,6 +128,10 @@ zabbix_export:
                 - $.country_code
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Country
         -
           uuid: 01786fc4107647fd962e9deaa2eb179c
           name: 'IP Country Name'
@@ -117,6 +140,7 @@ zabbix_export:
           delay: '0'
           trends: '0'
           value_type: TEXT
+          inventory_link: SITE_COUNTRY
           preprocessing:
             -
               type: JSONPATH
@@ -124,6 +148,10 @@ zabbix_export:
                 - $.country_name
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Country
         -
           uuid: 2b7e54e081184b2d94e3808a09f04304
           name: 'IP Currency Code'
@@ -139,6 +167,10 @@ zabbix_export:
                 - $.currency.code
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Currency
         -
           uuid: 6eb790e5a9f94fbc804667bff6543bdc
           name: 'IP Currency Name'
@@ -154,6 +186,10 @@ zabbix_export:
                 - $.currency.name
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Currency
         -
           uuid: 9cd5c0c3ca064a84be3bc93574ff7724
           name: 'IP Currency Name Plural'
@@ -169,6 +205,10 @@ zabbix_export:
                 - $.currency.plural
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Currency
         -
           uuid: 01bacc4ca8a54d7faa28c548378f2eb5
           name: 'IP Country Flag'
@@ -184,6 +224,10 @@ zabbix_export:
                 - $.location.country_flag_emoji
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Country
         -
           uuid: e8f08aa2c3954bcc84170c849a96cf3c
           name: 'IP Country Flag URL'
@@ -199,6 +243,10 @@ zabbix_export:
                 - $.location.country_flag
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Country
         -
           uuid: 1cee42d1c59f4f93b5fccf18d775efe6
           name: 'IP Hostname'
@@ -247,6 +295,7 @@ zabbix_export:
           delay: '0'
           trends: '0'
           value_type: TEXT
+          inventory_link: LOCATION_LAT
           preprocessing:
             -
               type: JSONPATH
@@ -254,6 +303,10 @@ zabbix_export:
                 - $.latitude
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Coordinates
         -
           uuid: a6288ec49e3545ac8bc9781985b5eace
           name: 'IP Longitude'
@@ -262,6 +315,7 @@ zabbix_export:
           delay: '0'
           trends: '0'
           value_type: TEXT
+          inventory_link: LOCATION_LON
           preprocessing:
             -
               type: JSONPATH
@@ -269,6 +323,10 @@ zabbix_export:
                 - $.longitude
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Coordinates
         -
           uuid: 2d6e1f9da7394eea982d5a359ffc983b
           name: 'IP Region Code'
@@ -284,6 +342,10 @@ zabbix_export:
                 - $.region_code
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Region
         -
           uuid: 7f3f4482b1f143ada7612da9300f2745
           name: 'IP Region Name'
@@ -292,6 +354,7 @@ zabbix_export:
           delay: '0'
           trends: '0'
           value_type: TEXT
+          inventory_link: SITE_STATE
           preprocessing:
             -
               type: JSONPATH
@@ -299,6 +362,10 @@ zabbix_export:
                 - $.region_name
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Region
         -
           uuid: 19b11735725342d687e57c32e5d6ac20
           name: 'IP Timezone Code'
@@ -314,6 +381,10 @@ zabbix_export:
                 - $.time_zone.code
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Timezone
         -
           uuid: 8d02a37f18be49cd905305e4d091cb04
           name: 'IP Timezone DST'
@@ -329,6 +400,10 @@ zabbix_export:
                 - $.time_zone.is_daylight_saving
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Timezone
         -
           uuid: fdd8c42385e340ee8e239a85a14ab1d0
           name: 'IP Timezone GMT Offset'
@@ -344,6 +419,10 @@ zabbix_export:
                 - $.time_zone.gmt_offset
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Timezone
         -
           uuid: 3307555871f74c848e580b95e9311351
           name: 'IP Timezone ID'
@@ -359,6 +438,10 @@ zabbix_export:
                 - $.time_zone.id
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Location
+              value: Timezone
         -
           uuid: 9cc0c7ebe20f441bb7f0254308b0728b
           name: 'IP Type'
@@ -382,6 +465,7 @@ zabbix_export:
           delay: '0'
           trends: '0'
           value_type: TEXT
+          inventory_link: SITE_ZIP
           preprocessing:
             -
               type: JSONPATH
@@ -389,6 +473,10 @@ zabbix_export:
                 - $.zip
           master_item:
             key: ipstack.geoip.api.data
+      tags:
+        -
+          tag: API
+          value: IPStack
       macros:
         -
           macro: '{$GEOIP_IP_LOOKUP}'
