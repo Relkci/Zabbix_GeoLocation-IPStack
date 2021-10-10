@@ -1,0 +1,563 @@
+zabbix_export:
+  version: '5.4'
+  date: '2021-10-10T23:05:31Z'
+  groups:
+    -
+      uuid: c1042abaca9d435ca00326c24768d8b8
+      name: 'API Providers'
+    -
+      uuid: 96da04e87ad545eca5b9229b2ff7d3d0
+      name: 'Data Augmentation'
+  templates:
+    -
+      uuid: b42ead3e442b4ad8b10c65b1e9581df3
+      template: IPStack-GeoIP-Provider
+      name: IPStack-GeoIP-Provider
+      description: 'Provides IP address Geolocation via IPstack.com'
+      groups:
+        -
+          name: 'API Providers'
+        -
+          name: 'Data Augmentation'
+      items:
+        -
+          uuid: f0a6aa01889e45e88abfc1ca8c73e442
+          name: ipstack.geoip.api.data
+          type: HTTP_AGENT
+          key: ipstack.geoip.api.data
+          delay: 1d
+          history: 1d
+          trends: '0'
+          value_type: TEXT
+          url: 'https://api.ipstack.com/{$GEOIP_IP_LOOKUP}'
+          query_fields:
+            -
+              name: access_key
+              value: '{$IPSTACK_API}'
+        -
+          uuid: c4ee209ea5a64a198df8d6c62ee0fc8d
+          name: 'IP City'
+          type: DEPENDENT
+          key: ipstack.geoip.city
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.city
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: b431aedad0ea47d58ff40d4d5dcdda53
+          name: 'IP Connection ASN'
+          type: DEPENDENT
+          key: ipstack.geoip.connection.asn
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.connection.asn
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 47ce9947578f4ce5b3a73aafda068af1
+          name: 'IP Connection ISP'
+          type: DEPENDENT
+          key: ipstack.geoip.connection.isp
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.connection.isp
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 92482b75c66c42b889895b87b068ca41
+          name: 'IP Continent Name'
+          type: DEPENDENT
+          key: ipstack.geoip.continent_name
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.continent_name
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: b971ec785e90483493468b5f355c4e38
+          name: 'IP Country Code'
+          type: DEPENDENT
+          key: ipstack.geoip.country_code
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.country_code
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 01786fc4107647fd962e9deaa2eb179c
+          name: 'IP Country Name'
+          type: DEPENDENT
+          key: ipstack.geoip.country_name
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.country_name
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 2b7e54e081184b2d94e3808a09f04304
+          name: 'IP Currency Code'
+          type: DEPENDENT
+          key: ipstack.geoip.currency.code
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.currency.code
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 6eb790e5a9f94fbc804667bff6543bdc
+          name: 'IP Currency Name'
+          type: DEPENDENT
+          key: ipstack.geoip.currency.name
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.currency.name
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 9cd5c0c3ca064a84be3bc93574ff7724
+          name: 'IP Currency Name Plural'
+          type: DEPENDENT
+          key: ipstack.geoip.currency.name.plural
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.currency.plural
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 01bacc4ca8a54d7faa28c548378f2eb5
+          name: 'IP Country Flag'
+          type: DEPENDENT
+          key: ipstack.geoip.flag.emoji
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.location.country_flag_emoji
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: e8f08aa2c3954bcc84170c849a96cf3c
+          name: 'IP Country Flag URL'
+          type: DEPENDENT
+          key: ipstack.geoip.flag.url
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.location.country_flag
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 1cee42d1c59f4f93b5fccf18d775efe6
+          name: 'IP Hostname'
+          type: DEPENDENT
+          key: ipstack.geoip.hostname
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.hostname
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 6751ca8b73964a1daeb7d34e5f280945
+          name: IP
+          type: DEPENDENT
+          key: ipstack.geoip.ip
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.ip
+          master_item:
+            key: ipstack.geoip.api.data
+          triggers:
+            -
+              uuid: b3b7c80b110b4b5d9e11c319ac72614d
+              expression: 'last(/IPStack-GeoIP-Provider/ipstack.geoip.ip)="127.0.0.1"'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/IPStack-GeoIP-Provider/ipstack.geoip.ip)<>"127.0.0.1"'
+              name: 'IPSTack Not Configured - Change $GEO_IP_LOOKUP Macro'
+              opdata: ipstack.geoip.ip
+              priority: INFO
+              manual_close: 'YES'
+        -
+          uuid: 4ebe73081bee4a058d1e2394e8308e5d
+          name: 'IP Latitude'
+          type: DEPENDENT
+          key: ipstack.geoip.latitude
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.latitude
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: a6288ec49e3545ac8bc9781985b5eace
+          name: 'IP Longitude'
+          type: DEPENDENT
+          key: ipstack.geoip.longitude
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.longitude
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 2d6e1f9da7394eea982d5a359ffc983b
+          name: 'IP Region Code'
+          type: DEPENDENT
+          key: ipstack.geoip.region_code
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.region_code
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 7f3f4482b1f143ada7612da9300f2745
+          name: 'IP Region Name'
+          type: DEPENDENT
+          key: ipstack.geoip.region_name
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.region_name
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 19b11735725342d687e57c32e5d6ac20
+          name: 'IP Timezone Code'
+          type: DEPENDENT
+          key: ipstack.geoip.timezone.code
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.time_zone.code
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 8d02a37f18be49cd905305e4d091cb04
+          name: 'IP Timezone DST'
+          type: DEPENDENT
+          key: ipstack.geoip.timezone.dst
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.time_zone.is_daylight_saving
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: fdd8c42385e340ee8e239a85a14ab1d0
+          name: 'IP Timezone GMT Offset'
+          type: DEPENDENT
+          key: ipstack.geoip.timezone.gmt_offset
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.time_zone.gmt_offset
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 3307555871f74c848e580b95e9311351
+          name: 'IP Timezone ID'
+          type: DEPENDENT
+          key: ipstack.geoip.timezone.id
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.time_zone.id
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 9cc0c7ebe20f441bb7f0254308b0728b
+          name: 'IP Type'
+          type: DEPENDENT
+          key: ipstack.geoip.type
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.type
+          master_item:
+            key: ipstack.geoip.api.data
+        -
+          uuid: 1152ec80b04f4e9d90bad35c180b2210
+          name: 'IP Zip'
+          type: DEPENDENT
+          key: ipstack.geoip.zip
+          delay: '0'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JSONPATH
+              parameters:
+                - $.zip
+          master_item:
+            key: ipstack.geoip.api.data
+      macros:
+        -
+          macro: '{$GEOIP_IP_LOOKUP}'
+          value: 127.0.0.1
+          description: 'IP Address for Geo IP lookup (Change this to the correct IP)'
+        -
+          macro: '{$IPSTACK_API}'
+          value: YOUR_API_KEY
+          description: 'IPStack.com API Key'
+      dashboards:
+        -
+          uuid: 6907da87e0794987a3b9bec73bddfd82
+          name: 'IP Location Information'
+          pages:
+            -
+              widgets:
+                -
+                  type: PLAIN_TEXT
+                  name: Coordinates
+                  width: '11'
+                  height: '3'
+                  fields:
+                    -
+                      type: INTEGER
+                      name: style
+                      value: '1'
+                    -
+                      type: INTEGER
+                      name: show_lines
+                      value: '1'
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.latitude
+                        host: IPStack-GeoIP-Provider
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.longitude
+                        host: IPStack-GeoIP-Provider
+                -
+                  type: PLAIN_TEXT
+                  name: Currency
+                  'y': '12'
+                  width: '11'
+                  height: '3'
+                  fields:
+                    -
+                      type: INTEGER
+                      name: style
+                      value: '1'
+                    -
+                      type: INTEGER
+                      name: show_lines
+                      value: '1'
+                    -
+                      type: INTEGER
+                      name: show_as_html
+                      value: '1'
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.currency.code
+                        host: IPStack-GeoIP-Provider
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.currency.name
+                        host: IPStack-GeoIP-Provider
+                -
+                  type: PLAIN_TEXT
+                  name: Network
+                  'y': '9'
+                  width: '11'
+                  height: '3'
+                  fields:
+                    -
+                      type: INTEGER
+                      name: style
+                      value: '1'
+                    -
+                      type: INTEGER
+                      name: show_lines
+                      value: '1'
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.connection.asn
+                        host: IPStack-GeoIP-Provider
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.connection.isp
+                        host: IPStack-GeoIP-Provider
+                -
+                  type: PLAIN_TEXT
+                  name: 'Normalized Location'
+                  'y': '3'
+                  width: '11'
+                  height: '3'
+                  fields:
+                    -
+                      type: INTEGER
+                      name: style
+                      value: '1'
+                    -
+                      type: INTEGER
+                      name: show_lines
+                      value: '1'
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.city
+                        host: IPStack-GeoIP-Provider
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.country_code
+                        host: IPStack-GeoIP-Provider
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.region_code
+                        host: IPStack-GeoIP-Provider
+                -
+                  type: PLAIN_TEXT
+                  name: Timezone
+                  'y': '6'
+                  width: '11'
+                  height: '3'
+                  fields:
+                    -
+                      type: INTEGER
+                      name: style
+                      value: '1'
+                    -
+                      type: INTEGER
+                      name: show_lines
+                      value: '1'
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.timezone.code
+                        host: IPStack-GeoIP-Provider
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.timezone.dst
+                        host: IPStack-GeoIP-Provider
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.timezone.gmt_offset
+                        host: IPStack-GeoIP-Provider
+                    -
+                      type: ITEM
+                      name: itemids
+                      value:
+                        key: ipstack.geoip.timezone.id
+                        host: IPStack-GeoIP-Provider
