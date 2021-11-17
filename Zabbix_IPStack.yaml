@@ -1,6 +1,6 @@
 zabbix_export:
   version: '5.4'
-  date: '2021-10-10T23:58:40Z'
+  date: '2021-11-17T22:07:43Z'
   groups:
     -
       uuid: c1042abaca9d435ca00326c24768d8b8
@@ -25,8 +25,8 @@ zabbix_export:
           name: ipstack.geoip.api.data
           type: HTTP_AGENT
           key: ipstack.geoip.api.data
-          delay: 6h
-          history: 1d
+          delay: 1d
+          history: '0'
           trends: '0'
           value_type: TEXT
           url: 'https://api.ipstack.com/{$GEOIP_IP_LOOKUP}'
@@ -34,6 +34,10 @@ zabbix_export:
             -
               name: access_key
               value: '{$IPSTACK_API}'
+          tags:
+            -
+              tag: Application
+              value: IPStack
         -
           uuid: c4ee209ea5a64a198df8d6c62ee0fc8d
           name: 'IP City'
@@ -51,6 +55,9 @@ zabbix_export:
           master_item:
             key: ipstack.geoip.api.data
           tags:
+            -
+              tag: Application
+              value: IPStack
             -
               tag: Location
               value: City
@@ -70,6 +77,9 @@ zabbix_export:
           master_item:
             key: ipstack.geoip.api.data
           tags:
+            -
+              tag: Application
+              value: IPStack
             -
               tag: Connection
               value: ASN
@@ -93,6 +103,9 @@ zabbix_export:
             key: ipstack.geoip.api.data
           tags:
             -
+              tag: Application
+              value: IPStack
+            -
               tag: Connection
               value: ISP
             -
@@ -113,6 +126,10 @@ zabbix_export:
                 - $.continent_name
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Application
+              value: IPStack
         -
           uuid: b971ec785e90483493468b5f355c4e38
           name: 'IP Country Code'
@@ -129,6 +146,9 @@ zabbix_export:
           master_item:
             key: ipstack.geoip.api.data
           tags:
+            -
+              tag: Application
+              value: IPStack
             -
               tag: Location
               value: Country
@@ -150,6 +170,9 @@ zabbix_export:
             key: ipstack.geoip.api.data
           tags:
             -
+              tag: Application
+              value: IPStack
+            -
               tag: Location
               value: Country
         -
@@ -168,6 +191,9 @@ zabbix_export:
           master_item:
             key: ipstack.geoip.api.data
           tags:
+            -
+              tag: Application
+              value: IPStack
             -
               tag: Location
               value: Currency
@@ -188,6 +214,9 @@ zabbix_export:
             key: ipstack.geoip.api.data
           tags:
             -
+              tag: Application
+              value: IPStack
+            -
               tag: Location
               value: Currency
         -
@@ -207,27 +236,11 @@ zabbix_export:
             key: ipstack.geoip.api.data
           tags:
             -
+              tag: Application
+              value: IPStack
+            -
               tag: Location
               value: Currency
-        -
-          uuid: 01bacc4ca8a54d7faa28c548378f2eb5
-          name: 'IP Country Flag'
-          type: DEPENDENT
-          key: ipstack.geoip.flag.emoji
-          delay: '0'
-          trends: '0'
-          value_type: TEXT
-          preprocessing:
-            -
-              type: JSONPATH
-              parameters:
-                - $.location.country_flag_emoji
-          master_item:
-            key: ipstack.geoip.api.data
-          tags:
-            -
-              tag: Location
-              value: Country
         -
           uuid: e8f08aa2c3954bcc84170c849a96cf3c
           name: 'IP Country Flag URL'
@@ -245,23 +258,11 @@ zabbix_export:
             key: ipstack.geoip.api.data
           tags:
             -
+              tag: Application
+              value: IPStack
+            -
               tag: Location
               value: Country
-        -
-          uuid: 1cee42d1c59f4f93b5fccf18d775efe6
-          name: 'IP Hostname'
-          type: DEPENDENT
-          key: ipstack.geoip.hostname
-          delay: '0'
-          trends: '0'
-          value_type: TEXT
-          preprocessing:
-            -
-              type: JSONPATH
-              parameters:
-                - $.hostname
-          master_item:
-            key: ipstack.geoip.api.data
         -
           uuid: 6751ca8b73964a1daeb7d34e5f280945
           name: IP
@@ -277,6 +278,10 @@ zabbix_export:
                 - $.ip
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Application
+              value: IPStack
           triggers:
             -
               uuid: b3b7c80b110b4b5d9e11c319ac72614d
@@ -305,6 +310,9 @@ zabbix_export:
             key: ipstack.geoip.api.data
           tags:
             -
+              tag: Application
+              value: IPStack
+            -
               tag: Location
               value: Coordinates
         -
@@ -325,6 +333,9 @@ zabbix_export:
             key: ipstack.geoip.api.data
           tags:
             -
+              tag: Application
+              value: IPStack
+            -
               tag: Location
               value: Coordinates
         -
@@ -343,6 +354,9 @@ zabbix_export:
           master_item:
             key: ipstack.geoip.api.data
           tags:
+            -
+              tag: Application
+              value: IPStack
             -
               tag: Location
               value: Region
@@ -364,6 +378,9 @@ zabbix_export:
             key: ipstack.geoip.api.data
           tags:
             -
+              tag: Application
+              value: IPStack
+            -
               tag: Location
               value: Region
         -
@@ -382,6 +399,9 @@ zabbix_export:
           master_item:
             key: ipstack.geoip.api.data
           tags:
+            -
+              tag: Application
+              value: IPStack
             -
               tag: Location
               value: Timezone
@@ -402,6 +422,9 @@ zabbix_export:
             key: ipstack.geoip.api.data
           tags:
             -
+              tag: Application
+              value: IPStack
+            -
               tag: Location
               value: Timezone
         -
@@ -420,6 +443,9 @@ zabbix_export:
           master_item:
             key: ipstack.geoip.api.data
           tags:
+            -
+              tag: Application
+              value: IPStack
             -
               tag: Location
               value: Timezone
@@ -440,6 +466,9 @@ zabbix_export:
             key: ipstack.geoip.api.data
           tags:
             -
+              tag: Application
+              value: IPStack
+            -
               tag: Location
               value: Timezone
         -
@@ -457,6 +486,10 @@ zabbix_export:
                 - $.type
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Application
+              value: IPStack
         -
           uuid: 1152ec80b04f4e9d90bad35c180b2210
           name: 'IP Zip'
@@ -473,9 +506,19 @@ zabbix_export:
                 - $.zip
           master_item:
             key: ipstack.geoip.api.data
+          tags:
+            -
+              tag: Application
+              value: IPStack
       tags:
         -
           tag: API
+          value: IPStack
+        -
+          tag: Application
+          value: API
+        -
+          tag: Application
           value: IPStack
       macros:
         -
@@ -528,10 +571,6 @@ zabbix_export:
                   fields:
                     -
                       type: INTEGER
-                      name: style
-                      value: '1'
-                    -
-                      type: INTEGER
                       name: show_lines
                       value: '1'
                     -
@@ -557,10 +596,6 @@ zabbix_export:
                   width: '11'
                   height: '3'
                   fields:
-                    -
-                      type: INTEGER
-                      name: style
-                      value: '1'
                     -
                       type: INTEGER
                       name: show_lines
@@ -617,10 +652,6 @@ zabbix_export:
                   width: '11'
                   height: '3'
                   fields:
-                    -
-                      type: INTEGER
-                      name: style
-                      value: '1'
                     -
                       type: INTEGER
                       name: show_lines
